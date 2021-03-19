@@ -8,10 +8,9 @@ import javax.persistence.Id;
 @Entity
 public class Equipamento {
 
-	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY )
-	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
 	private Long id;
 	private String data;
 	private String nome;
@@ -47,6 +46,11 @@ public class Equipamento {
 
 	public void setQuantidade(String quantidade) {
 		this.quantidade = quantidade;
+	}
+
+	@Override
+	public String toString() {
+		return "Equipamento [id=" + id + ", data=" + data + ", nome=" + nome + ", quantidade=" + quantidade + "]";
 	}
 
 }
