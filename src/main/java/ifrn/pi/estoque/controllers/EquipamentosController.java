@@ -16,7 +16,7 @@ public class EquipamentosController {
 	
 	@RequestMapping("/equipamentos/form")
 	public String form() {
-		return "formEquipamento";
+		return "equipamentos/formEquipamento";
 	}
 	
 	@PostMapping("/equipamentos")
@@ -24,7 +24,7 @@ public class EquipamentosController {
 		
 		System.out.println(equipamento);
 		er.save(equipamento);
-		return "equipamento-adicionado";
+		return "equipamentos/equipamento-adicionado";
 		
 
 	}
