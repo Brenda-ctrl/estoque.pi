@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<title>Estoques</title>
+</head>
+<body>
+
+	<div th:replace="~{menu :: menu}"></div>
+
+	<div class="container">
+
+		<h1>Adicionar Equipamento</h1>
+
+		<form action="/equipamentos" method="post">
+
+			<div>
+				<label>Data:</label> <input type="text" name="data">
+			</div>
+			<div>
+				<label>Nome:</label> <input type="text" name="nome">
+			</div>
+			<div>
+				<label>Quantidade:</label> <input type="text" name="quantidade">
+			</div>
+			<div>
+				<button class="waves-effect waves-light btn" type="submit">Salvar</button>
+				<button class="waves-effect waves-light btn" type="reset">Limpar</button>
+			</div>
+		</form>
+	</div>
+</body>
+</html>
