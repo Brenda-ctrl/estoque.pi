@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<title>Estoques</title>
+</head>
+<body>
+
+	<div th:replace="~{menu :: menu}"></div>
+
+	<div class="container">
+
+		<h1>Lista de equipamentos</h1>
+
+		<table>
+
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Data</th>
+					<th>Nome</th>
+					<th>Quantidade</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="e : ${equipamentos}">
+					<td th:text="${e.id}">1</td>
+					<td th:text="${e.data}">20/03/2019</td>
+					<td th:text="${e.nome}">Monitor</td>
+					<td th:text="${e.quantidade}">5</td>
+				</tr>
+			</tbody>
+
+		</table>
+	</div>
+</body>
+</html>
