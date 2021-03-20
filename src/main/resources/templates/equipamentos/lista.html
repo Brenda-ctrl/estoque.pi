@@ -28,7 +28,7 @@
 			<tbody>
 				<tr th:each="e : ${equipamentos}">
 					<td th:text="${e.id}">1</td>
-					<td th:text="${e.data}">20/03/2019</td>
+					<td><a th:href="@{/equipamentos/{id}(id=${e.id})}"><span th:text="${e.data}">0/03/2019</span></a></td>
 					<td th:text="${e.nome}">Monitor</td>
 					<td th:text="${e.quantidade}">5</td>
 				</tr>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<title>Estoques</title>
+</head>
+<body>
+
+	<div th:replace="~{menu :: menu}"></div>
+
+	<div class="container">
+
+		<h1>Detalhes do equipamento</h1>
+		<div class="row">
+			<div class="col s12">
+				<div class="card blue-grey darken-1">
+					<div class="card-content white-text">
+						<span class="card-title">Equipamento</span>
+						<p>
+							<strong>Id: </strong> <span th:text="${equipamento.id}">1</span>
+						</p>
+						<p>
+							<strong>Data: </strong> <span th:text="${equipamento.data}">20/03/2021</span>
+						</p>
+						<p>
+							<strong>Nome: </strong> <span th:text="${equipamento.nome}">monitor</span>
+						</p>
+						<p>
+							<strong>Quantidade: </strong> <span th:text="${equipamento.quantidade}">5</span>
+						</p>
+
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+</body>
+</html>

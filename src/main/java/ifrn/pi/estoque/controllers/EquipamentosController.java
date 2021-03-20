@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -39,5 +40,22 @@ public class EquipamentosController {
 		ModelAndView mv = new ModelAndView("equipamentos/lista");
 		mv.addObject("equipamentos", equipamentos);
 		return mv;
+	}
+
+	@GetMapping("/{id}")
+	public ModelAndView detalhar(@PathVariable Long id) {
+		ModelAndView md = new ModelAndView();
+		java.util.Optional<Equipamento> opt = er.findById(id);
+		if (opt.isEmpty()) {
+			md.setViewName("redirect:/equipamentos");
+			return md;
+		}
+
+		md.setViewName("equipamentos/detalhes");
+		Equipamento equipamento = opt.get();
+
+		md.addObject("equipamento", equipamento);
+
+		return md;
 	}
 }
