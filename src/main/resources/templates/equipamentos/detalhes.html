@@ -37,18 +37,23 @@
 
 			</div>
 		</div>
-</div>
+	</div>
+
+	<div class="container">
 		<div class="row">
 			<div class="col s12">
 				<div class="card">
 					<div class="card-content">
 						<span class="card-title">Adicionar Categoria:</span>
-						<form action="" method="post">
+						<form th:action="@{/equipamentos/{idEquipamento(idEquipamento=${equipamento.id})}" method="post">
+						<div>
+						<input type="hidden" name="id" th:value="${idCategoria}" readonly="readonly">
+						</div>
 							<div>
-								<label>Setor: </label> <input type="text" name="setor">
+								<label>Setor: </label> <input type="text" name="setor" th:value="${categoria.setor}">
 							</div>
 							<div>
-								<label>Marca </label> <input type="text" name="marca">
+								<label>Marca </label> <input type="text" name="marca" th:value="${categoria.marca}">
 							</div>
 							<div>
 								<button type="submit" class="btn">Salvar</button>
@@ -59,33 +64,40 @@
 				</div>
 			</div>
 		</div>
-
-
+	</div>
+	<div class="container">
 		<div class="row">
 			<div class="col s12">
-            <div class= "card">
-				<span class="card-title">Categorias</span>
-				<table class="highlght">
-					<thead>
-						<tr>
-							<th>Id</th>
-							<th>Setor</th>
-							<th>Marca</th>
-						</tr>
+				<div class="card">
+					<span class="card-title">Categorias</span>
+					<table class="highlght">
+						<thead>
+							<tr>
+								<th>Id</th>
+								<th>Setor</th>
+								<th>Marca</th>
+							</tr>
 
-					</thead>
-					<tbody>
-						<tr th:each="c : ${categorias}">
-						<td th:text="${c.id}">1</td>
-						<td th:text="${c.setor}">Redes</td>
-						<td th:text="${c.marca}">Servidor Intel</td>
-						
-						</tr>
-					</tbody>
-				</table>
+						</thead>
+						<tbody>
+							<tr th:each="c : ${categorias}">
+								<td th:text="${c.id}">1</td>
+								<td th:text="${c.setor}">Redes</td>
+								<td th:text="${c.marca}">Servidor Intel</td>
+								<td>
+								<a th:href="@{/equipamentos/idEquipamento/categorias/{idCategoria}/selecionar(idEquipamento=${equipamento.id}, idCategoria=${c.id})}"><i class="material-icons">edit</i>/a></a>
+								<a
+									th:href="@{/equipamentos/{idEquipamento}/categorias/{idCategoria}/remover(idEquipamento=${equipamento.id}, idCategoria=${c.id})}"><i
+										class="material-icons">delete</i>/a></a>
+										</td>
+							</tr>
+						</tbody>
+					</table>
 
-</div>				
-</div>
+				</div>
 			</div>
+		</div>
+	</div>
+
 </body>
 </html>

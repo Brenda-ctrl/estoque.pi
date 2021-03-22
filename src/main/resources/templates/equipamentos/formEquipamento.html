@@ -16,15 +16,17 @@
 		<h1>Adicionar Equipamento</h1>
 
 		<form action="/equipamento" method="post">
-
-			<div>
-				<label>Data:</label> <input type="text" name="data">
+            <div>
+				 <input type="hidden" name="id" th:value="${equipamento.id}" readonly="readonly">
 			</div>
 			<div>
-				<label>Nome:</label> <input type="text" name="nome">
+				<label>Data:</label> <input type="text" name="data" th:value="${equipamento.data}">
 			</div>
 			<div>
-				<label>Quantidade:</label> <input type="text" name="quantidade">
+				<label>Nome:</label> <input type="text" name="nome" th:value="${equipamento.nome}">
+			</div>
+			<div>
+				<label>Quantidade:</label> <input type="text" name="quantidade" th:value="${equipamento.quantidade}">
 			</div>
 			<div>
 				<button type="submit" class="btn">Salvar</button>
