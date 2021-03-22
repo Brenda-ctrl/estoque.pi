@@ -35,7 +35,10 @@
 							th:text="${e.data}">0/03/2019</span></a></td>
 					<td th:text="${e.nome}">Monitor</td>
 					<td th:text="${e.quantidade}">5</td>
-					<td><a th:href="@{/equipamentos/{id}/remover(id=${e.id})}"><i class="material-icons">delete</i></a></td>
+					<td>
+						<a th:href="@{/equipamentos/{id}/selecionar(id=${e.id})}"><i class="material-icons">edit</i></a>
+						<a th:href="@{/equipamentos/{id}/remover(id=${e.id})}"><i class="material-icons">delete</i></a>
+				    </td>
 				</tr>
 			</tbody>
 

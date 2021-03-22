@@ -25,16 +25,16 @@ public class EquipamentosController {
 	@Autowired
 	private CategoriaRepository cr;
 	@GetMapping("/equipamentos/form")
-	public String form() {
+	public String form(Equipamento equipamento) {
 		return "equipamentos/formEquipamento";
 	}
 
 	@PostMapping
-	public String adicionar(Equipamento equipamento) {
+	public String salvar(Equipamento equipamento) {
 
 		System.out.println(equipamento);
 		er.save(equipamento);
-		return "equipamentos/equipamento-adicionado";
+		return "redirect:/equipamentos";
 
 	}
 
@@ -47,7 +47,7 @@ public class EquipamentosController {
 	}
 
 	@GetMapping("/{id}")
-	public ModelAndView detalhar(@PathVariable Long id) {
+	public ModelAndView detalhar(@PathVariable Long id, Categoria categoria) {
 		ModelAndView md = new ModelAndView();
 		java.util.Optional<Equipamento> opt = er.findById(id);
 		if (opt.isEmpty()) {
@@ -85,6 +85,53 @@ public class EquipamentosController {
 		return "redirect:/equipamentos/{idEquipamento}";
 	}
 
+	@GetMapping("{id}/selecionar")
+	public ModelAndView selecionarEquipamento(@PathVariable Long id) {
+		ModelAndView md = new ModelAndView();
+		Optional<Equipamento> opt = er.findById(id);
+		if(opt.isEmpty()) {
+			md.setViewName("redirect:/equipamentos");
+			return md;
+		}
+		
+		Equipamento equipamento = opt.get();
+		md.setViewName("equipamentos/formEquipamento");
+		md.addObject("equipamento", equipamento);
+		
+		return md;
+		
+	}
+	
+	@GetMapping("{idEquipamento}/categotias/{idCategoria}/selecionar")
+	public ModelAndView selecionarCategoria(@PathVariable Long idEvento, @PathVariable Long idCategoria) {
+		ModelAndView md = new ModelAndView();
+		
+		Optional<Equipamento> optEquipamento = er.findById(idCategoria);
+		Optional<Categoria> optCategoria = cr.findById(idCategoria);
+		
+		if(optEquipamento.isEmpty() || optCategoria.isEmpty()) {
+			md.setViewName("redirect:/equipamentos");
+			return md;
+		}
+		
+		Equipamento equipamento = optEquipamento.get();
+		Categoria categoria = optCategoria.get();
+		
+		if(equipamento.getId() != categoria.getEquipamento().getId()) {
+			md.setViewName("redirect:/equipamentos");
+			return md;
+		
+		}
+		
+		md.setViewName("equipamentos/detalhes");
+		md.addObject("categoria", categoria);
+		md.addObject("equipamento", equipamento);
+		md.addObject("categorias", cr.findByEquipamento(equipamento));
+		
+		
+		return md;
+	}
+	
 	@GetMapping("/{id}/remover")
 	public String apagarEquipamento(@PathVariable Long id) {
 	
