@@ -16,8 +16,8 @@
 		<h1>Detalhes do equipamento</h1>
 		<div class="row">
 			<div class="col s12">
-				<div class="card blue-grey darken-1">
-					<div class="card-content white-text">
+				<div class="card">
+					<div class="card-content">
 						<span class="card-title">Equipamento</span>
 						<p>
 							<strong>Id: </strong> <span th:text="${equipamento.id}">1</span>
@@ -29,17 +29,62 @@
 							<strong>Nome: </strong> <span th:text="${equipamento.nome}">monitor</span>
 						</p>
 						<p>
-							<strong>Quantidade: </strong> <span th:text="${equipamento.quantidade}">5</span>
+							<strong>Quantidade: </strong> <span
+								th:text="${equipamento.quantidade}">5</span>
 						</p>
-
 					</div>
+				</div>
 
+			</div>
+		</div>
 
+		<div class="row">
+			<div class="col s12">
+				<div class="card">
+					<div class="card-content">
+						<span class="card-title">Adicionar Categoria:</span>
+						<form action="" method="post">
+							<div>
+								<label>Setor: </label> <input type="text" name="setor">
+							</div>
+							<div>
+								<label>Marca </label> <input type="text" name="marca">
+							</div>
+							<div>
+								<button type="submit" class="btn">Salvar</button>
+								<button type="reset" class="btn">Limpar</button>
+							</div>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
 
 
-	</div>
+		<div class="row">
+			<div class="col s12">
+            <div class= "card">
+				<span class="card-title">Categorias</span>
+				<table class="highlght">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Setor</th>
+							<th>Marca</th>
+						</tr>
+
+					</thead>
+					<tbody>
+						<tr th:each="c : ${categorias}">
+						<td th:text="${c.id}">1</td>
+						<td th:text="${c.setor}">Redes</td>
+						<td th:text="${c.marca}">Servidor Intel</td>
+						</tr>
+					</tbody>
+				</table>
+
+</div>				
+</div>
+			</div>
 </body>
 </html>
