@@ -84,4 +84,23 @@ public class EquipamentosController {
 		
 		return "redirect:/equipamentos/{idEquipamento}";
 	}
+
+	@GetMapping("/{id}/remover")
+	public String apagarEquipamento(@PathVariable Long id) {
+	
+	Optional<Equipamento> opt = er.findById(id);
+	
+	if(!opt.isEmpty()) {
+		Equipamento equipamento = opt.get();
+		
+		List<Categoria> categorias = cr.findByEquipamento(equipamento);
+		
+		cr.deleteAll(categorias);
+		er.delete(equipamento);
+	}
+	
+	return "redirect:/equipamentos";
+}
+
+
 }
