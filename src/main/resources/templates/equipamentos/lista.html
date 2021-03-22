@@ -5,6 +5,8 @@
 <!-- Compiled and minified CSS -->
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
 <title>Estoques</title>
 </head>
 <body>
@@ -23,14 +25,17 @@
 					<th>Data</th>
 					<th>Nome</th>
 					<th>Quantidade</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="e : ${equipamentos}">
 					<td th:text="${e.id}">1</td>
-					<td><a th:href="@{/equipamentos/{id}(id=${e.id})}"><span th:text="${e.data}">0/03/2019</span></a></td>
+					<td><a th:href="@{/equipamentos/{id}(id=${e.id})}"><span
+							th:text="${e.data}">0/03/2019</span></a></td>
 					<td th:text="${e.nome}">Monitor</td>
 					<td th:text="${e.quantidade}">5</td>
+					<td><a th:href="@{/equipamentos/{id}/remover(id=${e.id})}"><i class="material-icons">delete</i></a></td>
 				</tr>
 			</tbody>
 
