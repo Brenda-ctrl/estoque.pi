@@ -1,6 +1,7 @@
 package ifrn.pi.estoque.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,7 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import ifrn.pi.estoque.models.Categoria;
 import ifrn.pi.estoque.models.Equipamento;
+import ifrn.pi.estoque.repositories.CategoriaRepository;
 import ifrn.pi.estoque.repositories.EquipamentoRepository;
 
 @Controller
@@ -19,7 +22,8 @@ public class EquipamentosController {
 
 	@Autowired
 	private EquipamentoRepository er;
-
+	@Autowired
+	private CategoriaRepository cr;
 	@GetMapping("/equipamentos/form")
 	public String form() {
 		return "equipamentos/formEquipamento";
@@ -56,6 +60,28 @@ public class EquipamentosController {
 
 		md.addObject("equipamento", equipamento);
 
+		List<Categoria> categorias = cr.findByEquipamento(equipamento);
+		md.addObject("categorias", categorias);
+		
 		return md;
+	}
+
+	@PostMapping("/{idEquipamento}")
+	public String salvarCategoria(@PathVariable Long idEquipamento, Categoria categoria) {
+	
+		System.out.println("Id do equipamento: " + idEquipamento);
+		System.out.println(categoria);
+		
+		Optional<Equipamento> opt = er.findById(idEquipamento);
+		if(opt.isEmpty()) {
+			return "redirect:/equipamentos";
+		}
+		
+		Equipamento equipamento = opt.get();
+		categoria.setEquipamento(equipamento);
+		
+		cr.save(categoria);
+		
+		return "redirect:/equipamentos/{idEquipamento}";
 	}
 }
